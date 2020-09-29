@@ -38,16 +38,16 @@ This is a guideline for users who want to add a new demo in any language/framewo
 
 - Add readme file using readme-template.md
 
-- Check the detailed guidelines on how to impliment the demo
+- Check the detailed guidelines on how to implement the demo
 
 - Follow the standard coding [guidelines](guidelines) which is recommended for specific framework or language 
 
-- Use provided [theme](theme) for fontend of the demo, it will reduce your work and will make all the demo consistent
+- Use provided [theme](theme) for the frontend of the demo, it will reduce your work and will make all the demo consistent
 
 
 ## Issues
 
-If you found Typo/Bug/Enhancement in any of our demos please careate a issue. Issues are very valuable to this project.
+If you found Typo/Bug/Enhancement in any of our demos please create an issue. Issues are very valuable to this project.
 
  - Ideas are a valuable source of contributions others can make
  - Problems show where this project is lacking
