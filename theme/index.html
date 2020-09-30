@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Developer Authenticaion Page</title>
+	<link rel="stylesheet" type="text/css" href="./assets/theme.css">
+	<script src="./assets/theme.js"></script>
+</head>
+
+<body>
+	<div class="login-page">
+		<div class="form">
+			<img src="./assets/images/lr-logo.png" alt="" width="150px">
+			<form class="register-form" style="display:none">
+				<p>Clicking on Login button will redirect the user to the LoginRadius IDX with action as
+					<strong>Register</strong>
+					</br>
+					</br>
+					For more reference please refer to <a
+						href="https://www.loginradius.com/docs/developer/concepts/idx-overview/" target="_blank"
+						rel="noopener noreferrer">this</a>
+				</p>
+				<button onclick="actionEvent();">Register</button>
+				<p class="message" onclick="toggleForm('login')">Already registered? <a href="#">Sign In</a></p>
+			</form>
+			<form class="login-form" style="display:block">
+				<p>Clicking on Login button will redirect the user to the LoginRadius IDX with action as
+					<strong>Login</strong>
+					</br>
+					</br>
+					For more reference please refer to <a
+						href="https://www.loginradius.com/docs/developer/concepts/idx-overview/" target="_blank"
+						rel="noopener noreferrer">this</a>
+				</p>
+				<button onclick="(function(){console.log('test'); location.href='internal-narendra.hub.loginradius.com/auth.aspx?return_url=localhost:5500'
+				;})()">login</button>
+				<p class="message" onclick="toggleForm('register')">Not registered? <a href="#">Create an account</a>
+				</p>
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>
