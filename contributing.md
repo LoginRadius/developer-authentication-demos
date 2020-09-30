@@ -40,7 +40,7 @@ This is a guideline for users who want to add a new demo in any language/framewo
 
 - Check the detailed guidelines on how to implement the demo
 
-- Follow the standard coding [guidelines](guidelines) which is recommended for specific framework or language 
+- Follow the standard coding [guidelines](guidelines.md) which is recommended for specific framework or language 
 
 - Use provided [theme](theme) for the frontend of the demo, it will reduce your work and will make all the demo consistent
 
