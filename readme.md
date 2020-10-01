@@ -24,7 +24,7 @@ LoginRadius empowers businesses to deliver a delightful customer experience and 
 
 ## How to Contribute
 
-We accept all kinds of contributions, be it a bug you found or adding a new demo on a new technology. Please go through our [Contributing Guidelines](CONTRIBUTING.md) to know more.
+We accept all kinds of contributions, be it a bug you found or adding a new demo on a new technology. Please go through our [Contributing Guidelines](contributing.md) to know more.
 
 ## Licence
 
