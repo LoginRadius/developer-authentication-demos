@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const config = require('./config');
 const lrObj = require('loginradius-sdk')(config);
@@ -24,14 +24,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/profile', function (req, res) {
-  var output = {};
+  let output = {};
   output.status = 'error';
   output.message = 'an error occoured';
-  var token = req.query.token ? req.query.token : '';
+  let token = req.query.token ? req.query.token : '';
   if (token === '') {
     output.message = 'Token is required';
   } else {
-    var fields = '';
+    let fields = '';
     lrObj.authenticationApi.getProfileByAccessToken(token, fields).then(function (response) {
       if ((response.Uid && response.Uid != '')) {
         output.data = response;
@@ -50,25 +50,25 @@ app.get('/api/profile', function (req, res) {
 
 
 app.post('/api/profile', function (req, res) {
-  var output = {};
+  let output = {};
   output.status = 'error';
   output.message = 'an error occoured';
-  var accessToken = req.body.token ? req.body.token : '';
-  var firstname = req.body.firstname ? req.body.firstname : '';
-  var lastname = req.body.lastname ? req.body.lastname : '';
-  var about = req.body.about ? req.body.about : '';
+  let accessToken = req.body.token ? req.body.token : '';
+  let firstname = req.body.firstname ? req.body.firstname : '';
+  let lastname = req.body.lastname ? req.body.lastname : '';
+  let about = req.body.about ? req.body.about : '';
   if (accessToken === '') {
     output.message = 'Token is required';
   } else {
-    var userProfileUpdateModel = {};
+    let userProfileUpdateModel = {};
     userProfileUpdateModel.FirstName = firstname;
     userProfileUpdateModel.LastName = lastname;
     userProfileUpdateModel.About = about;
-    var emailTemplate = '';
-    var fields = '';
-    var nullSupport = true;
-    var verificationUrl = 'http://localhost:3000/demo';
-    var smsTemplate = '';
+    let emailTemplate = '';
+    let fields = '';
+    let nullSupport = true;
+    let verificationUrl = 'http://localhost:3000/demo';
+    let smsTemplate = '';
 
     lrObj.authenticationApi.updateProfileByAccessToken(accessToken, userProfileUpdateModel, emailTemplate, fields, nullSupport, smsTemplate, verificationUrl).then(function (response) {
       if (response.IsPosted) {

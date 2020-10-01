@@ -2,7 +2,7 @@
 LoginRadius Developer Node Express Demo 
 =======================================
 
-This is the sample demo of LoginRadius IAM implementation using Node.js and epresss framework.
+This is the sample demo of LoginRadius IAM implementation using Node.js and Express framework.
 
 
 ## How to use
@@ -27,7 +27,7 @@ theme/
 
 ### Getting Credentials
 
-After signing up for LoginRadius, you can get all the required credentials to communicate with LoginRadius APIs. Go through this document to get your API credentials from LoginRadius Dashboard
+After signing up for LoginRadius, you can get all the required credentials to communicate with LoginRadius APIs. Go through this document to get your API credentials from LoginRadius Dashboard.
 
 API credentials are as below
 
@@ -55,13 +55,13 @@ const config = {
 
 ### File explained
 
-`config.js` : This is used to set configuration for corresponding app registered on LoginRadius for using the authentication mechanism.
+`config.js` : This is used to set the configuration for the corresponding app registered on LoginRadius for using the authentication mechanism.
 
-`server.js` : This file is setting up the server to run the demo. Here the view path has been setup as commonly defined theme folder. To fetch and update profile, we have created two APIs, being `/api/profile` with `GET` and `POST` methods respectively. Under the hood these APIs are using the Node JS SDK to interact with LR ecosystem. 
+`server.js` : This file is setting up the server to run the demo. Here the view path has been setup as a commonly defined theme folder. To fetch and update profile, we have created two APIs, namely `/api/profile` with `GET` and `POST` methods respectively. Under the hood, these APIs are using the Node JS SDK to interact with LoginRadius ecosystem. 
 
 ### Running the demo
 
-Once configuration has been setup for the backend code, you can install the related pacakges using the following command
+Once the configuration has been setup for the backend code, you can install the related packages using the following command
 
 ```
 npm install 
