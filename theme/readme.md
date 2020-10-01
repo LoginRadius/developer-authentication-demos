@@ -2,7 +2,7 @@
 LoginRadius Developer Demo Theme
 =================================
 
-This is the basic theme folder containing all HTML, CSS and JavaScript files to create a full fledged authentication demo. This common theme folder can be utilizd in any of the server side framework and further can be extended as per the cuztomized requirements.
+This is the basic theme folder containing all HTML, CSS and JavaScript files to create a full-fledged authentication demo. This common theme folder can be utilized in any of the server-side frameworks and further can be extended as per the customized requirements.
 
 ## How to use
 
@@ -77,7 +77,7 @@ After successful login from LoginRadius IDX, the access token is returned as the
 
 2. How logout is working if we do logout on IDX page?
 
-After Logout action is performed on the IDX successfuly, user is redirected to the callback URL. On the callback page, we are checking if the access token validity. If invalid, Access Token is been removed from the localStroage and Cookies. 
+After Logout action is performed on the IDX successfuly, user is redirected to the callback URL. On the callback page, we are checking if the access token validity. If invalid, Access Token is been removed from the localStorage and Cookies. 
 
 
 3. How we are managing the Access Token on local and IDX?

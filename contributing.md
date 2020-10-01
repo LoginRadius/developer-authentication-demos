@@ -34,13 +34,13 @@ This is a guideline for users who want to add a new demo in any language/framewo
 
 - If the language or framework for which you want to build a demo is not present in the repo, please create an appropriate folder structure under the `demos` directory and put your complete code in it.
 
-- Always add `readme.md` in the framework folder with the code description and instructions to run it, you can use our sample [readme-template.md](readme-template.md)
+- Always add `readme.md` in the framework folder with the code description and instructions to run it, you can use our [SAMPLE-README Template](SAMPLE-README.md)
 
 - Add readme file using readme-template.md
 
 - Check the detailed guidelines on how to implement the demo
 
-- Follow the standard coding [guidelines](guidelines.md) which is recommended for specific framework or language 
+- Follow the standard coding [Guidelines](GUIDELINES.md) which is recommended for specific framework or language 
 
 - Use provided [theme](theme) for the frontend of the demo, it will reduce your work and will make all the demo consistent
 
@@ -74,4 +74,3 @@ Project maintainers have the right and responsibility to remove, edit, or
 reject comments, commits, code, wiki edits, issues, and other contributions
 that are not aligned to this Code of Conduct, or to ban temporarily or
 permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
-

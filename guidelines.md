@@ -9,14 +9,10 @@ After signing up for LoginRadius, you can get all the required credentials to co
 Go through this document to get your API credentials from [LoginRadius Dashboard](https://www.loginradius.com/docs/developer/howto/dashboard-setup/)
 
 
-
-
 API credentials are as below
 - APP Name
 - API Key
 - API Secret
-
-
 
 
 ## Add demo project
@@ -30,9 +26,9 @@ Change Login page link with your IDX Login page link. The link will look like as
 <your app name>.hub.loginradius.com/auth.aspx?returun_url=”<your demo home page url>”
 ```
 
-**NOTE: return _url would be the url where you’ll be redirected after successful authentication**
+**NOTE: return _url would be the URL where you’ll be redirected after successful authentication**
 
-After successful authentication on IDX page, user will be redirected to your given return page with access token
+After successful authentication on the IDX page, the user will be redirected to your given return page with the access token.
 ```
 <localhost domain>?accesstoken=<Access Token>
 ```
@@ -67,7 +63,7 @@ You can utilize our existing SDKs functions to handle access token
 
 [React Native](https://www.loginradius.com/docs/developer/mobile-sdk-libraries/react-native-library/)
 
-**Note: If you do not find you tech stack in above sdk list than you can use our LoginRadius APIs to get profile using access token.**
+**Note: If you do not find you tech stack in the above sdk list than you can use our LoginRadius APIs to get profile using access token.**
 
 ### Through APIs
 You can use our below APIs to get and update the profile
