@@ -14,6 +14,7 @@ API credentials are as below
 - API Key
 - API Secret
 
+![Image](app_credentials.png)
 
 ## Add demo project
 Create a project under your tech stack folder. 
