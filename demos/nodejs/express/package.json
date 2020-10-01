@@ -1,6 +1,6 @@
 {
-  "name": "node-demo",
-  "version": "10.0.0-demo",
+  "name": "loginradius-express-authentication-demo",
+  "version": "1.0.0",
   "keywords": [
     "util",
     "functional",
