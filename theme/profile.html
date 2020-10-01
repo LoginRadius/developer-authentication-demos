@@ -3,19 +3,57 @@
 
 <head>
 	<title>Developer Profile Page</title>
-	<link rel="stylesheet" type="text/css" href="./assets/theme.css">
-	<script src="./assets/theme.js"></script>
+	<link rel="stylesheet" type="text/css" href="./assets/styles/theme.css">
+	<link rel="stylesheet" type="text/css" href="./assets/styles/loader.css">
+	<link rel="stylesheet" type="text/css" href="./assets/styles/toast.css">
+
 </head>
 
 <body>
 	<div class="form">
 		<img src="./assets/images/lr-logo.png" alt="" width="150px">
-		<form class="profile-form">
-			<h1>John Doe</h1>
-			<p class="emailField">example@example.com</p>
+		<div id="loader-wrapper">
+			<div id="loader"></div>
+			<div class="loader-section section-left"></div>
+			<div class="loader-section section-right"></div>
+		</div>
+		<div class="profile-container">
+			<h1 id="profile_name"></h1>
+			<p class="profile-field"> 
+				<span> <b>Email: </b> </span>
+				<span id="profile_email"></span>
+			</p>
+			<p class="profile-field"> 
+				<span> <b>Last Login: </b> </span>
+				<span id="profile_lastlogin"></span>
+			</p>
+			<p class="profile-field"> 
+				<span id="profile_about"></span>
+			</p>
+		</div>
+
+		<form id="update_profile_form" action="" method="post">
+			<h3>Update Profile</h3>
+			<fieldset>
+				<input placeholder="First Name" id="profile_form_first_name" type="text" tabindex="1" autofocus>
+			</fieldset>
+			<fieldset>
+				<input placeholder="Last Name" id="profile_form_last_name" type="text" tabindex="2">
+			</fieldset>
+			<fieldset>
+				<input placeholder="About" id="profile_form_about" type="text" tabindex="3">
+			</fieldset>
+			<fieldset>
+				<button name="submit" type="submit" id="update_profile_button" data-submit="...Sending">Update</button>
+			</fieldset>
 		</form>
 	</div>
-
+	<script src="./assets/scripts/theme.js"></script>
+	<script src="./assets/scripts/options.js"></script>
+	<script src="./assets/scripts/utility.js"></script>
+	<script src="./assets/scripts/apiService.js"></script>
+	<script src="./assets/scripts/toast.js"></script>
+	<script src="./assets/scripts/profile.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,8 @@
+var commonOptions = {};
+
+
+commonOptions.apiKey = "<YOUR API KEY>";
+commonOptions.appName = "<YOUR APP NAME>";
+const url = window.location.href;
+const domainName = url.substring(0, url.lastIndexOf("/"));
+const params = url.split("?")[1];
