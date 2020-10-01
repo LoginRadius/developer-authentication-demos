@@ -3,8 +3,7 @@
 
 <head>
 	<title>Developer Authenticaion Page</title>
-	<link rel="stylesheet" type="text/css" href="./assets/theme.css">
-	<script src="./assets/theme.js"></script>
+	<link rel="stylesheet" type="text/css" href="./assets/styles/theme.css">
 </head>
 
 <body>
@@ -16,11 +15,11 @@
 					<strong>Register</strong>
 					</br>
 					</br>
-					For more reference please refer to <a
-						href="https://www.loginradius.com/docs/developer/concepts/idx-overview/" target="_blank"
-						rel="noopener noreferrer">this</a>
+					For more reference please refer to <a href="https://www.loginradius.com/docs/developer/concepts/idx-overview/"
+						target="_blank" rel="noopener noreferrer">this</a>
 				</p>
-				<button onclick="actionEvent();">Register</button>
+				<a href="" class="theme-button" id="lr_register_btn">Register</a>
+
 				<p class="message" onclick="toggleForm('login')">Already registered? <a href="#">Sign In</a></p>
 			</form>
 			<form class="login-form" style="display:block">
@@ -28,17 +27,20 @@
 					<strong>Login</strong>
 					</br>
 					</br>
-					For more reference please refer to <a
-						href="https://www.loginradius.com/docs/developer/concepts/idx-overview/" target="_blank"
-						rel="noopener noreferrer">this</a>
+					For more reference please refer to <a href="https://www.loginradius.com/docs/developer/concepts/idx-overview/"
+						target="_blank" rel="noopener noreferrer">this</a>
 				</p>
-				<button onclick="(function(){console.log('test'); location.href='internal-narendra.hub.loginradius.com/auth.aspx?return_url=localhost:5500'
-				;})()">login</button>
+				<a href="" class="theme-button" id="lr_login_btn">login</a>
 				<p class="message" onclick="toggleForm('register')">Not registered? <a href="#">Create an account</a>
 				</p>
 			</form>
 		</div>
 	</div>
+	<script src="./assets/scripts/theme.js"></script>
+	<script src="./assets/scripts/options.js"></script>
+	<script src="./assets/scripts/utility.js"></script>
+	<script src="./assets/scripts/index.js"></script>
+
 </body>
 
 </html>
