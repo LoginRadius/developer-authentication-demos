@@ -31,15 +31,15 @@ After signing up for LoginRadius, you can get all the required credentials to co
 
 API credentials are as below
 
-APP Name
-API Key
-API Secret
+* APP Name
+* API Key
+* API Secret
 
 
 
 ### Configure demo
 
-Add a file name at `config.js`, and replace your API key and App name and APP secret with the one obtained from the above step. A sample `config.js.sample` file has been added for your reference.
+Add a file name at `config.js`, and replace your API key, App name and API secret with the ones obtained from the above step. A sample `config.js.sample` file has been added for your reference.
 
 ```
 const config = {
