@@ -45,8 +45,8 @@ Add a file name at `config.js`, and replace your API key and App name and APP se
 const config = {
   apiDomain: 'https://api.loginradius.com',
   apiKey: '<API_KEY>',
-  apiSecret: '<API_SECRET'>,
-  siteName: <APP_NAME'>',
+  apiSecret: '<API_SECRET>',
+  siteName: <APP_NAME>',
  };
  
  module.exports = config;
