@@ -7,7 +7,7 @@ Thank you for your pull request. Please review the below requirements.
 <!-- Remove items that do not apply. For completed items, change [ ] to [x]. -->
 
 - [ ] You have read the [Contribution Guidlines](https://github.com/LoginRadius/developer-authentication-demos/blob/master/guidelines.md) before creating this PR.
-- [ ] This is not a duplicate entry for any framework or language\
+- [ ] This is not a duplicate entry for any framework or language
 
 ##### Description of change
 
