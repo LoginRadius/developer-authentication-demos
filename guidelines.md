@@ -1,4 +1,5 @@
 # Step-up Authentication
+
 ## Configure LoginRadius
 Sign up to [LoginRadius Dashboard](https://accounts.loginradius.com/auth.aspx?return_url=https://adminconsole.loginradius.com/login&action=register)
 
@@ -20,10 +21,42 @@ API credentials are as below
 Create a project under your tech stack folder. 
 Use Existing Login/Register page and profile page available in the repository
 
-**Note**: Get refrence from sample demo of LoginRadius IAM implementation using [Node.js and Express framework](/demos/nodejs/express/readme.md) under demos -> nodejs -> express.
+### Frontend
+
+Checkout the [Developer demo theams](/demos/theme/readme.md) for Folder staructure and how to utilize and work with token on client side. 
+
+![Image](developer-authenticaion-page.png)
+
+```
+theme/
+  --|assets/
+    |--|images/
+    |----|lr-logo.png
+    |--|scripts/
+    |----|apiService.js
+    |----|index.js
+    |----|options.js
+    |----|profile.js
+    |----|theme.js
+    |----|toast.js
+    |----|utility.js
+    |--|styles/
+    |----loader.css
+    |----theme.css
+    |----toast.css
+  --|index.html
+  --|profile.html
+  --|readme.md
+
+```
+
+### Backend
+
+Get refrence from sample demo of LoginRadius IAM implementation using [Node.js and Express framework](/demos/nodejs/express/readme.md) under demos -> nodejs -> express.
 
 
 Change Login page link with your IDX Login page link. The link will look like as below
+
 ```
 <your app name>.hub.loginradius.com/auth.aspx?returun_url=”<your demo home page url>”
 ```
@@ -31,17 +64,32 @@ Change Login page link with your IDX Login page link. The link will look like as
 **NOTE: return _url would be the URL where you’ll be redirected after successful authentication**
 
 After successful authentication on the IDX page, the user will be redirected to your given return page with the access token.
+
 ```
 <localhost domain>?accesstoken=<Access Token>
 ```
+
 ## Utilize the access token as below
 
-### Access token utilization
+### Handling token
+
+Look into this diagram to understand the Authentication flow and token handling.
+
+![Image](auth_flow.png)
+
+In the Above diagram:
+- Your Application will redirect you to LoginRadius IDX page once you click on the Login Button.
+- Login and Authenitcate the User
+- IDX page will return you to the return_url along with the token
+- Utilize the token by using SDKs or APIs to get the profile.
+- Display the User profile on the profile page in forntend.
+
+
 The token will be available in query param and can be utilized to get profile using our LoginRadius APIs as well as with available SDKs.
 
 
 ### Through SDKs
-You can utilize our existing SDKs functions to handle access token
+You can utilize our existing SDKs functions to handle access token. Follow the list of available SDKs guidelines.
 
 [Python](https://www.loginradius.com/docs/developer/sdk-libraries/python-library/)
 
@@ -78,3 +126,23 @@ You can utilize our existing SDKs functions to handle access token
 Stuck somewhere in implementation, Raise a support ticket. We'll be happy to help you.
 
 ![Image](support_ticket.png)
+
+
+
+## FAQs
+
+1. How we are reading the users Access Token?
+
+After successful login from LoginRadius IDX, the access token is returned as the query parameter to the callback URL, Access token is been read from the callback URL and stored in the browser.
+
+
+2. How logout is working if we do logout on IDX page?
+
+After Logout action is performed on the IDX successfuly, user is redirected to the callback URL. On the callback page, we are checking if the access token validity. If invalid, Access Token is been removed from the localStorage and Cookies. 
+
+
+3. How we are managing the Access Token on local and IDX?
+
+Local: Access token is stored as "lr-session-token" in both cookie and localStorage. In this demo, to fetch the user's profile, access token is read from the localStorage and an ajax call is made to the LoginRadius Node.js SDK for user's profile.
+
+IDX: Access token is stored as "lr-session-token" in the cookie.
