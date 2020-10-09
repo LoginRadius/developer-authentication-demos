@@ -1,0 +1,3 @@
+# loginradius.domain=<API_DOMAIN> # uncomment to override default
+loginradius.key=<API KEY>
+loginradius.secret=<API_SECRET>
