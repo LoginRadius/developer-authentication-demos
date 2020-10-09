@@ -15,7 +15,7 @@ While using this theme folder, you need to have a LoginRadius account to experie
 
 ```
 
-theme/
+demos/nodejs/express/
   --|node_modules
   --|config.js
   --|package.json

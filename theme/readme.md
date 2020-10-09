@@ -67,21 +67,3 @@ After configuration at client side, go to any of server side framework code and 
 
 One your server is setup and running you can see the login page on `localhost:3000/demo`.
 
-
-## FAQs
-
-1. How we are reading the users Access Token?
-
-After successful login from LoginRadius IDX, the access token is returned as the query parameter to the callback URL, Access token is been read from the callback URL and stored in the browser.
-
-
-2. How logout is working if we do logout on IDX page?
-
-After Logout action is performed on the IDX successfuly, user is redirected to the callback URL. On the callback page, we are checking if the access token validity. If invalid, Access Token is been removed from the localStorage and Cookies. 
-
-
-3. How we are managing the Access Token on local and IDX?
-
-Local: Access token is stored as "lr-session-token" in both cookie and localStorage. In this demo, to fetch the user's profile, access token is read from the localStorage and an ajax call is made to the LoginRadius Node.js SDK for user's profile.
-
-IDX: Access token is stored as "lr-session-token" in the cookie.
