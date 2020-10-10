@@ -25,14 +25,14 @@ Use Existing Login/Register page and profile page available in the repository
 
 Change Login page link with your IDX Login page link. The link will look like as below
 ```
-<your app name>.hub.loginradius.com/auth.aspx?returun_url=”<your demo home page url>”
+<your app name>.hub.loginradius.com/auth.aspx?return_url=”<your demo home page url>”
 ```
 
 **NOTE: return _url would be the URL where you’ll be redirected after successful authentication**
 
 After successful authentication on the IDX page, the user will be redirected to your given return page with the access token.
 ```
-<localhost domain>?accesstoken=<Access Token>
+<your demo home page url>?accesstoken=<Access Token>
 ```
 ## Utilize the access token as below
 

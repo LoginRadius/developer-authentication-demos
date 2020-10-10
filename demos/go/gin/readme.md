@@ -23,10 +23,9 @@ theme/
 After signing up for LoginRadius, you can get all the required credentials to communicate with LoginRadius APIs. Go through this document to get your API credentials from LoginRadius Dashboard.
 
 API credentials are as below
-
-APP Name
-API Key
-API Secret
+- APP Name
+- API Key
+- API Secret
 
 
 
