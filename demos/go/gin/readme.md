@@ -26,6 +26,8 @@ API credentials are as below
 - APP Name
 - API Key
 - API Secret
+- Access Token
+- UID 
 
 
 
