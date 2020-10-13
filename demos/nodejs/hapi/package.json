@@ -1,0 +1,22 @@
+{
+  "name": "loginradius-hapi-authentication-demo",
+  "version": "1.0.0",
+  "description": "LoginRadius NodeJS (Hapi) SDK Demo",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "LoginRadius",
+  "dependencies": {
+    "@hapi/hapi": "^20.0.1",
+    "@hapi/inert": "^6.0.3",
+    "loginradius-sdk": "^11.0.0"
+  }
+}
