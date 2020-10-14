@@ -7,8 +7,9 @@ const path = require('path');
 
 const VIEW_PATH = path.join(__dirname, '../../../theme');
 
+// Initialization function
 const init = async () => {
-
+    // Creates a server on localhost:3000
     const server = Hapi.server({
         port: 3000,
         host: 'localhost',
@@ -19,7 +20,10 @@ const init = async () => {
         }
     });
 
+    // Use static file serving
     await server.register(require('@hapi/inert'));
+    
+    // Route for Login/Register page
     server.route({
         method: 'GET',
         path: '/{file*}',
@@ -30,7 +34,8 @@ const init = async () => {
             }
         }
     });
-
+    
+    // Route to GET the profile info by token
     server.route({
         method: 'GET',
         path: '/api/profile',
@@ -66,6 +71,8 @@ const init = async () => {
             }
         }
     });
+    
+    // Route to Update the profile info using a token
     server.route({
         method: 'POST',
         path: '/api/profile',
@@ -114,11 +121,13 @@ const init = async () => {
             }
         }
     });
-
+    
+    // Starts the server
     await server.start();
     console.log('Open the localhost:3000 for nice authentication demo');
 };
 
+// Handels ERROR : UNHANDELEDREJECTION
 process.on('unhandledRejection', (err) => {
     console.log(err);
     process.exit(1);
