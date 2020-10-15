@@ -7,7 +7,7 @@ const path = require('path');
 
 const VIEW_PATH = path.join(__dirname, '../../../theme');
 
-// Creates a server boject
+// Creates a server object
 const server = restify.createServer({
   name: 'restifyDemo',
   version: '1.0.0'
@@ -94,7 +94,7 @@ server.post('/api/profile', (req, res, next) => {
     return next();
 });
 
-// Starts the server a localhost:3000
+// Starts the server at localhost:3000
 server.listen(3000, () => {
   console.log(`Open the ${server.url} for nice authentication demo`);
 });
