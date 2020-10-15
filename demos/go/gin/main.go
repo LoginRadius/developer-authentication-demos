@@ -19,6 +19,7 @@ import (
 var router *gin.Engine
 
 func main() {
+	//env files
 	err := godotenv.Load("config.env")
 
 	if err != nil {
@@ -30,17 +31,13 @@ func main() {
 	// Serve frontend static files
 	router.Use(static.Serve("/", static.LocalFile("../../../theme", true)))
 
-	// Setup route group for the API
-	api := router.Group("/api")
-	{
-		api.GET("/", func(c *gin.Context) {
-			c.JSON(http.StatusOK, gin.H{
-				"message": "Successfully started",
-			})
+	router.GET("/api", func(c *gin.Context) { //api routing
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Successfully started",
 		})
-	}
-	api.GET("/profile", handleget)
-	api.POST("/profile", handlepost)
+	})
+	router.GET("/api/profile", handleget)   //Get request
+	router.POST("/api/profile", handlepost) //Post Request
 	// Start and run the server
 	router.Run(":3000")
 
@@ -48,6 +45,7 @@ func main() {
 func handleget(c *gin.Context) {
 	var w http.ResponseWriter = c.Writer
 	var errors string
+	token := c.Request.URL.Query().Get("token")
 	respCode := 200
 
 	cfg := lr.Config{
@@ -56,9 +54,8 @@ func handleget(c *gin.Context) {
 	}
 	lrclient, err := lr.NewLoginradius(
 		&cfg,
-		map[string]string{"token": os.Getenv("ACCESS_TOKEN")},
+		map[string]string{"token": token},
 	)
-	log.Printf(c.Query("auth"))
 	if err != nil {
 		errors = errors + err.(lrerror.Error).OrigErr().Error()
 		respCode = 500
@@ -105,7 +102,7 @@ func handlepost(c *gin.Context) {
 
 	b, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(b, &data)
-	uid := os.Getenv("UID") //r.URL.Query().Get("Uid")
+	uid := c.Request.URL.Query().Get("Uid")
 
 	res, err := account.Loginradius(account.Loginradius{lrclient}).
 		PutManageAccountUpdate(
