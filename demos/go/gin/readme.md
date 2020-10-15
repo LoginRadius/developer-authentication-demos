@@ -26,8 +26,6 @@ API credentials are as below
 - APP Name
 - API Key
 - API Secret
-- Access Token
-- UID 
 
 
 
@@ -38,8 +36,7 @@ Add a file name at `config.env`, and replace your API key and App name and APP s
 ```
 APIKEY= <..APIKEY..>
 APISECRET= <..APISECRET..>
-ACCESS_TOKEN= <..ACCESS_TOKEN..>
-UID= <..UID..>
+
 ```
 
 ### File explained
