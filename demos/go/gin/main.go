@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -17,6 +18,12 @@ import (
 )
 
 var router *gin.Engine
+
+type Output struct {
+	Data    string `json:"data"`
+	Message string `json:"message"`
+	Status  string `json:"status"`
+}
 
 func main() {
 	//env files
@@ -45,6 +52,10 @@ func main() {
 func handleget(c *gin.Context) {
 	var w http.ResponseWriter = c.Writer
 	var errors string
+	var out Output
+	out.Message = "an error occoured"
+	out.Status = "error"
+
 	token := c.Request.URL.Query().Get("token")
 	respCode := 200
 
@@ -67,32 +78,68 @@ func handleget(c *gin.Context) {
 		respCode = 500
 	}
 
+	var data map[string]interface{}
+	er := json.Unmarshal([]byte(res.Body), &data)
+	if er != nil {
+		//panic(err)
+	}
+	uid := fmt.Sprintf("%v", data["Uid"])
+	if data["Uid"] != nil {
+		out.Data = uid
+		out.Message = "Profile fetched"
+		out.Status = "success"
+	} else {
+		out.Message = "Account does not exist."
+	}
+	c.Header("Uid", uid)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(respCode)
 	if errors != "" {
 		log.Printf(errors)
 		w.Write([]byte(errors))
-		return
 	}
-	w.Write([]byte(res.Body))
+	b, e := json.Marshal(out)
+	if e != nil {
+		//panic(err)
+	}
+	w.Write([]byte(b))
 }
 
 func handlepost(c *gin.Context) {
 	var w http.ResponseWriter = c.Writer
-	var r *http.Request = c.Request
 	var errors string
 	respCode := 200
+	var out Output
+	out.Message = "an error occoured"
+	out.Status = "error"
 
 	cfg := lr.Config{
 		ApiKey:    os.Getenv("APIKEY"),
 		ApiSecret: os.Getenv("APISECRET"),
 	}
+	token := c.Request.URL.Query().Get("token")
 
-	lrclient, err := lr.NewLoginradius(&cfg)
+	lrclient, err := lr.NewLoginradius(
+		&cfg,
+		map[string]string{"token": token},
+	)
 	if err != nil {
 		errors = errors + err.(lrerror.Error).OrigErr().Error()
 		respCode = 500
 	}
+
+	res, err := lrauthentication.Loginradius(lrauthentication.Loginradius{lrclient}).GetAuthReadProfilesByToken()
+	if err != nil {
+		errors = errors + err.(lrerror.Error).OrigErr().Error()
+		respCode = 500
+	}
+
+	var datauser map[string]interface{}
+	er := json.Unmarshal([]byte(res.Body), &datauser)
+	if er != nil {
+		//panic(err)
+	}
+	uid := fmt.Sprintf("%v", datauser["Uid"])
 
 	data := struct {
 		FirstName string
@@ -100,11 +147,10 @@ func handlepost(c *gin.Context) {
 		About     string
 	}{}
 
-	b, _ := ioutil.ReadAll(r.Body)
+	b, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(b, &data)
-	uid := c.Request.URL.Query().Get("Uid")
 
-	res, err := account.Loginradius(account.Loginradius{lrclient}).
+	response, err := account.Loginradius(account.Loginradius{lrclient}).
 		PutManageAccountUpdate(
 			uid,
 			data,
@@ -113,15 +159,22 @@ func handlepost(c *gin.Context) {
 	if err != nil {
 		errors = errors + err.(lrerror.Error).OrigErr().Error()
 		respCode = 500
+	} else {
+		out.Message = "Profile has been updated successfully."
+		out.Status = "success"
+		out.Data = response.Body
 	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(respCode)
 	if errors != "" {
 		log.Printf(errors)
-		log.Printf(uid)
 		w.Write([]byte(errors))
 		return
 	}
-	w.Write([]byte(res.Body))
+	b, e := json.Marshal(out)
+	if e != nil {
+		//panic(err)
+	}
+	w.Write([]byte(b))
 }
