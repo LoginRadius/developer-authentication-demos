@@ -8,6 +8,11 @@ This is the sample demo of LoginRadius IAM implementation using the Jakarta EE a
 
 While using this theme folder, you need to have a LoginRadius account to experience the smooth login functionality.
 
+### Prerequisites
+
+- [JDK 11+](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- [Maven](https://maven.apache.org/install.html)
+
 ### Getting Credentials
 
 After signing up for LoginRadius, you can get all the required credentials to communicate with LoginRadius APIs. Go through this document to get your API credentials from LoginRadius Dashboard.
@@ -31,9 +36,7 @@ loginradius.secret=<API_SECRET>
 
 ### Running the demo
 
-1. Install Maven
-
-2. Run
+`cd` to the demo project root and run:
 ```
 mvn clean package tomee-embedded:run
 ```
