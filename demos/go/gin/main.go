@@ -83,15 +83,13 @@ func handleget(c *gin.Context) {
 	if er != nil {
 		//panic(err)
 	}
-	uid := fmt.Sprintf("%v", data["Uid"])
 	if data["Uid"] != nil {
-		out.Data = uid
+		out.Data = res.Body
 		out.Message = "Profile fetched"
 		out.Status = "success"
 	} else {
 		out.Message = "Account does not exist."
 	}
-	c.Header("Uid", uid)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(respCode)
 	if errors != "" {
