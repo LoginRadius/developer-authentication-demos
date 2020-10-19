@@ -1,0 +1,21 @@
+{
+  "name": "loginradius-restify-authentication-demo",
+  "version": "1.0.0",
+  "description": "LoginRadius NodeJS SDK Demo",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "LoginRadius",
+  "dependencies": {
+    "loginradius-sdk": "^11.0.0",
+    "restify": "^8.5.1"
+  }
+}
