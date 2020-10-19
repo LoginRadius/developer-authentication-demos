@@ -1,5 +1,5 @@
 const config = {
-  apiDomain: 'https://api.loginradius.com',
+  apiDomain: 'api.loginradius.com',
   apiKey: '<API_KEY>',
   apiSecret: '<API_SECRET>',
   siteName: '<APP_NAME>',
