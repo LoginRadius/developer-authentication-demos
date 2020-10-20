@@ -158,9 +158,14 @@ func handlepost(c *gin.Context) {
 		errors = errors + err.(lrerror.Error).OrigErr().Error()
 		respCode = 500
 	} else {
+		var data map[string]interface{}
+		er := json.Unmarshal([]byte(response.Body), &data)
+		if er != nil {
+			//panic(err)
+		}
 		out.Message = "Profile has been updated successfully."
 		out.Status = "success"
-		out.Data = response.Body
+		out.Data = data
 	}
 
 	w.Header().Set("Content-Type", "application/json")
