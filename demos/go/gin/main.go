@@ -146,9 +146,11 @@ func handlepost(c *gin.Context) {
 		if er != nil {
 			//panic(err)
 		}
-		out.Message = "Profile has been updated successfully."
-		out.Status = "success"
-		out.Data = data
+		if data["IsPosted"] == true {
+			out.Message = "Profile has been updated successfully."
+			out.Status = "success"
+			out.Data = data
+		}
 	}
 
 	w.Header().Set("Content-Type", "application/json")
