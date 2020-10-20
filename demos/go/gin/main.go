@@ -20,7 +20,7 @@ import (
 var router *gin.Engine
 
 type Output struct {
-	Data    string `json:"data"`
+	Data    interface{} `json:"data"`
 	Message string `json:"message"`
 	Status  string `json:"status"`
 }
@@ -84,7 +84,7 @@ func handleget(c *gin.Context) {
 		//panic(err)
 	}
 	if data["Uid"] != nil {
-		out.Data = res.Body
+		out.Data = data
 		out.Message = "Profile fetched"
 		out.Status = "success"
 	} else {
