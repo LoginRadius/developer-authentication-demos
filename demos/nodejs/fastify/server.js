@@ -14,10 +14,17 @@ fastify.register(require('fastify-static'), {
   root: VIEW_PATH
 });
 
+// Main entry point
+// Returns the index.html main page
 fastify.get('/', function (request, reply) {
   reply.sendFile('index.html')
 });
 
+
+
+// GET method (HTTP GET /api/profile)
+// Fetches the profile by the token, if authenticated
+// Requires a parameters in the body: [token].
 fastify.get('/api/profile', function (request, reply) {
   let output = {};
   output.status = 'error';
@@ -35,15 +42,23 @@ fastify.get('/api/profile', function (request, reply) {
       } else {
         output.message = 'Account does not exist.';
       }
-      reply.send(output);
     }).catch(function (error) {
-      output.message = error.Description;
+      if (error.ErrorCode){
+        output.message = error.Description;
+      } else {
+          output.message = error.message;
+      }
     });
   }
   reply.send(output);
 });
 
 
+
+// POST method (HTTP POST /api/profile)
+// Updates the profile with given data based and returns the updated profile
+// Requires a parameters in the body: [token].
+// Optional parameters in the body: [firstname, lastname, about]
 fastify.post('/api/profile', function (request, reply) {
   let output = {};
   output.status = 'error';
@@ -74,11 +89,16 @@ fastify.post('/api/profile', function (request, reply) {
         output.message = 'Account not updated';
       }
     }).catch(function (error) {
-      output.message = error.Description;
+      if (error.ErrorCode){
+        output.message = error.Description;
+      } else {
+          output.message = error.message;
+      }
     });
   }
   reply.send(output);
 });
+
 
 fastify.listen(3000, function (err, address) {
   if (err) {
