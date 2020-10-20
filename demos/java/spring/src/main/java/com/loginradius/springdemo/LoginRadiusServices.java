@@ -1,5 +1,6 @@
 package com.loginradius.springdemo;
 
+import com.google.gson.Gson;
 import com.loginradius.sdk.api.authentication.AuthenticationApi;
 import com.loginradius.sdk.models.requestmodels.UserProfileUpdateModel;
 import com.loginradius.sdk.models.responsemodels.otherobjects.UserProfilePostResponse;
@@ -19,8 +20,8 @@ public class LoginRadiusServices {
 
     @PostConstruct
     public void initLoginRadius(){
-        LoginRadiusSDK.Initialize.setApiKey("<YOUR-API-KEY>");
-        LoginRadiusSDK.Initialize.setApiSecret("<YOUR-API-SECRET>");
+        LoginRadiusSDK.Initialize.setApiKey("<API-KEY>");
+        LoginRadiusSDK.Initialize.setApiSecret("<API-SECRET>");
     }
 
 
@@ -33,7 +34,7 @@ public class LoginRadiusServices {
         authApi.getProfileByAccessToken(accessToken, null, new AsyncHandler<>() {
             @Override
             public void onSuccess(Identity identity) {
-                response[0] = new Response("success","Profile Fetched", identity);
+                response[0] = new Response("success","Profile Fetched", new Gson().toJson(identity));
             }
 
             @Override
@@ -63,11 +64,7 @@ public class LoginRadiusServices {
             @Override
             public void onSuccess(UserProfilePostResponse<Identity> identityUserProfilePostResponse) {
                 System.out.println("Profile Updated");
-                if(identityUserProfilePostResponse.getIsPosted()){
-                    response[0] = new Response("success","Profile Updated",identityUserProfilePostResponse.getData());
-                }else{
-                    response[0] = new Response("error","Profile Not Updated",identityUserProfilePostResponse.getData());
-                }
+                response[0] = new Response("success","Profile Updated",new Gson().toJson(identityUserProfilePostResponse.getData()));
             }
 
             @Override

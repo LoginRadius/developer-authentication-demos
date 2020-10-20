@@ -1,16 +1,19 @@
 package com.loginradius.springdemo.objects;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 public class Response {
     private final String status;
     private final String message;
-    private Object data;
+    private String data;
 
     public Response(String status, String message){
         this.status = status;
         this.message = message;
     }
 
-    public Response(String status, String message, Object data){
+    public Response(String status, String message, String data){
         this(status,message);
         this.data = data;
     }
@@ -23,10 +26,10 @@ public class Response {
         return status;
     }
 
-    public void setData(Object data){
+    public void setData(String data){
         this.data = data;
     }
     public Object getData(){
-        return data;
+        return new Gson().fromJson(this.data, Object.class);
     }
 }
