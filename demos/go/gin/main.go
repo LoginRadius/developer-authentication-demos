@@ -2,14 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 
 	lr "github.com/LoginRadius/go-sdk"
-	account "github.com/LoginRadius/go-sdk/api/account"
 	lrauthentication "github.com/LoginRadius/go-sdk/api/authentication"
 	"github.com/LoginRadius/go-sdk/lrerror"
 	"github.com/gin-gonic/contrib/static"
@@ -21,8 +19,8 @@ var router *gin.Engine
 
 type Output struct {
 	Data    interface{} `json:"data"`
-	Message string `json:"message"`
-	Status  string `json:"status"`
+	Message string      `json:"message"`
+	Status  string      `json:"status"`
 }
 
 func main() {
@@ -126,19 +124,6 @@ func handlepost(c *gin.Context) {
 		respCode = 500
 	}
 
-	res, err := lrauthentication.Loginradius(lrauthentication.Loginradius{lrclient}).GetAuthReadProfilesByToken()
-	if err != nil {
-		errors = errors + err.(lrerror.Error).OrigErr().Error()
-		respCode = 500
-	}
-
-	var datauser map[string]interface{}
-	er := json.Unmarshal([]byte(res.Body), &datauser)
-	if er != nil {
-		//panic(err)
-	}
-	uid := fmt.Sprintf("%v", datauser["Uid"])
-
 	data := struct {
 		FirstName string
 		LastName  string
@@ -148,11 +133,9 @@ func handlepost(c *gin.Context) {
 	b, _ := ioutil.ReadAll(c.Request.Body)
 	json.Unmarshal(b, &data)
 
-	response, err := account.Loginradius(account.Loginradius{lrclient}).
-		PutManageAccountUpdate(
-			uid,
-			data,
-		)
+	response, err := lrauthentication.Loginradius(lrauthentication.Loginradius{lrclient}).PutAuthUpdateProfileByToken(
+		data,
+	)
 
 	if err != nil {
 		errors = errors + err.(lrerror.Error).OrigErr().Error()
