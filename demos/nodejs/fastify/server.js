@@ -32,6 +32,7 @@ fastify.get('/api/profile', function (request, reply) {
   let token = request.query.token ? request.query.token : '';
   if (token === '') {
     output.message = 'Token is required';
+    reply.send(output);
   } else {
     let fields = '';
     lrObj.authenticationApi.getProfileByAccessToken(token, fields).then(function (response) {
@@ -42,15 +43,16 @@ fastify.get('/api/profile', function (request, reply) {
       } else {
         output.message = 'Account does not exist.';
       }
+      reply.send(output);
     }).catch(function (error) {
       if (error.ErrorCode){
         output.message = error.Description;
       } else {
           output.message = error.message;
       }
+      reply.send(output);
     });
   }
-  reply.send(output);
 });
 
 
@@ -69,6 +71,7 @@ fastify.post('/api/profile', function (request, reply) {
   let about = request.body.about ? request.body.about : '';
   if (accessToken === '') {
     output.message = 'Token is required';
+    reply.send(output);
   } else {
     let userProfileUpdateModel = {};
     userProfileUpdateModel.FirstName = firstname;
@@ -88,15 +91,16 @@ fastify.post('/api/profile', function (request, reply) {
       } else {
         output.message = 'Account not updated';
       }
+      reply.send(output);
     }).catch(function (error) {
       if (error.ErrorCode){
         output.message = error.Description;
       } else {
           output.message = error.message;
       }
+      reply.send(output);
     });
   }
-  reply.send(output);
 });
 
 
