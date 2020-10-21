@@ -149,7 +149,7 @@ func handlepost(c *gin.Context) {
 		if data["IsPosted"] == true {
 			out.Message = "Profile has been updated successfully."
 			out.Status = "success"
-			out.Data = data
+			out.Data = data["Data"]
 		}
 	}
 
