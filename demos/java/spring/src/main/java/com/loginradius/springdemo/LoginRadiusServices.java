@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class LoginRadiusServices {
 
+    /* CHANGE YOUR INFORMATIONS IN HERE */
     @PostConstruct
     public void initLoginRadius(){
         LoginRadiusSDK.Initialize.setApiKey("<API-KEY>");
