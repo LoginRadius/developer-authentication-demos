@@ -58,7 +58,7 @@ Get reference from sample demo of LoginRadius IAM implementation using [Node.js 
 Change Login page link with your IDX Login page link. The link will look like as below.
 
 ```
-<your app name>.hub.loginradius.com/auth.aspx?return_url=”<your demo home page url>”
+<your app name>.hub.loginradius.com/auth.aspx?returun_url=”<your demo home page url>”
 ```
 
 **NOTE: return _url would be the URL where you will be redirected after successful authentication**
@@ -66,7 +66,7 @@ Change Login page link with your IDX Login page link. The link will look like as
 After successful authentication on the IDX page, the user will be redirected to your given return page with the access token.
 
 ```
-<your demo home page url>?accesstoken=<Access Token>
+<localhost domain>?accesstoken=<Access Token>
 ```
 
 ## Utilize the access token as below
