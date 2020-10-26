@@ -1,4 +1,4 @@
-LoginRadius Developer Golang Gin Demo 
+LoginRadius Developer Golang Fiber Framework Demo 
 =======================================
 
 ## How to use
