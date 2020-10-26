@@ -10,12 +10,10 @@ import (
 	lr "github.com/LoginRadius/go-sdk"
 	lrauthentication "github.com/LoginRadius/go-sdk/api/authentication"
 	"github.com/LoginRadius/go-sdk/lrerror"
-	"github.com/gin-gonic/contrib/static"
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/adaptor/v2"
+	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
 )
-
-var router *gin.Engine
 
 type Output struct {
 	Data    interface{} `json:"data"`
@@ -24,37 +22,34 @@ type Output struct {
 }
 
 func main() {
+
+	app := fiber.New()
 	//env files
 	err := godotenv.Load("config.env")
 
 	if err != nil {
 		log.Fatal("Error loading env files")
 	}
-	// Set the router as the default one shipped with Gin
-	router := gin.Default()
 
-	// Serve frontend static files
-	router.Use(static.Serve("/", static.LocalFile("../../../theme", true)))
+	app.Static("/", "../../../theme")
 
-	router.GET("/api", func(c *gin.Context) { //api routing
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Successfully started",
-		})
-	})
-	router.GET("/api/profile", handleget)   //Get request
-	router.POST("/api/profile", handlepost) //Post Request
-	// Start and run the server
-	router.Run(":3000")
+	app.Get("/api/profile", adaptor.HTTPHandler(handler(handleget)))   //Get request
+	app.Post("/api/profile", adaptor.HTTPHandler(handler(handlepost))) //Post Request
 
+	app.Listen(":3000")
 }
-func handleget(c *gin.Context) {
-	var w http.ResponseWriter = c.Writer
+
+func handler(f http.HandlerFunc) http.Handler {
+	return http.HandlerFunc(f)
+}
+
+func handleget(w http.ResponseWriter, r *http.Request) {
 	var errors string
 	var out Output
 	out.Message = "an error occoured"
 	out.Status = "error"
 
-	token := c.Request.URL.Query().Get("token")
+	token := r.URL.Query().Get("token")
 	respCode := 200
 
 	cfg := lr.Config{
@@ -101,8 +96,7 @@ func handleget(c *gin.Context) {
 	w.Write([]byte(b))
 }
 
-func handlepost(c *gin.Context) {
-	var w http.ResponseWriter = c.Writer
+func handlepost(w http.ResponseWriter, r *http.Request) {
 	var errors string
 	respCode := 200
 	var out Output
@@ -113,7 +107,7 @@ func handlepost(c *gin.Context) {
 		ApiKey:    os.Getenv("APIKEY"),
 		ApiSecret: os.Getenv("APISECRET"),
 	}
-	token := c.Request.URL.Query().Get("token")
+	token := r.URL.Query().Get("token")
 
 	lrclient, err := lr.NewLoginradius(
 		&cfg,
@@ -130,7 +124,7 @@ func handlepost(c *gin.Context) {
 		About     string
 	}{}
 
-	b, _ := ioutil.ReadAll(c.Request.Body)
+	b, _ := ioutil.ReadAll(r.Body)
 	json.Unmarshal(b, &data)
 
 	response, err := lrauthentication.Loginradius(lrauthentication.Loginradius{lrclient}).PutAuthUpdateProfileByToken(
