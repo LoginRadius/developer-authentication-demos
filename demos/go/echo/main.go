@@ -27,7 +27,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading env files")
 	}
-	// Set the router as the default one shipped with Gin
+	// Set the router as the new one shipped with echo
 	router := echo.New()
 
 	// Serve frontend static files
